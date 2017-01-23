@@ -11,8 +11,8 @@ import RealmSwift
 
 class EnteryViewController: UIViewController {
 
-    @IBOutlet weak var txtContactName: UITextField!
-    @IBOutlet weak var txtContactTelephoneNumber: UITextField!
+    //@IBOutlet weak var txtContactName: UITextField!
+    //@IBOutlet weak var txtContactTelephoneNumber: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,11 +21,11 @@ class EnteryViewController: UIViewController {
 
 
     @IBAction func actionSaveData(_ sender: Any) {
-        saveContacts()
+        //saveContacts()
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-    func saveContacts(){
+  /*  func saveContacts(){
         
     let newContact = ContactItem()
         newContact.Name = txtContactName.text!
@@ -44,7 +44,7 @@ class EnteryViewController: UIViewController {
         }
         
         
-    }
+    }*/
 
     
 }

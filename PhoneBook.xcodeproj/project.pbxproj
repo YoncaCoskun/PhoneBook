@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		47024F891E3601EB0020F7CA /* EnteryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47024F881E3601EB0020F7CA /* EnteryViewController.swift */; };
-		47024F8D1E360C0C0020F7CA /* ContactItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47024F8C1E360C0C0020F7CA /* ContactItem.swift */; };
+		47161D4A1E368BD400A37E61 /* Films.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47161D491E368BD400A37E61 /* Films.swift */; };
 		47E148AB1E325130008D52D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E148AA1E325130008D52D7 /* AppDelegate.swift */; };
 		47E148AD1E325130008D52D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E148AC1E325130008D52D7 /* ViewController.swift */; };
 		47E148B01E325130008D52D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47E148AE1E325130008D52D7 /* Main.storyboard */; };
@@ -21,7 +21,7 @@
 		006750AB082EC9E2DAA50E76 /* Pods-PhoneBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhoneBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhoneBook/Pods-PhoneBook.debug.xcconfig"; sourceTree = "<group>"; };
 		11E6A1AF18122A6DD487946F /* Pods_PhoneBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhoneBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		47024F881E3601EB0020F7CA /* EnteryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnteryViewController.swift; sourceTree = "<group>"; };
-		47024F8C1E360C0C0020F7CA /* ContactItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactItem.swift; sourceTree = "<group>"; };
+		47161D491E368BD400A37E61 /* Films.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Films.swift; sourceTree = "<group>"; };
 		47E148A71E325130008D52D7 /* PhoneBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhoneBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47E148AA1E325130008D52D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47E148AC1E325130008D52D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,7 +47,7 @@
 		47024F8B1E360B9D0020F7CA /* RealmModel */ = {
 			isa = PBXGroup;
 			children = (
-				47024F8C1E360C0C0020F7CA /* ContactItem.swift */,
+				47161D491E368BD400A37E61 /* Films.swift */,
 			);
 			name = RealmModel;
 			sourceTree = "<group>";
@@ -226,10 +226,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47161D4A1E368BD400A37E61 /* Films.swift in Sources */,
 				47E148AD1E325130008D52D7 /* ViewController.swift in Sources */,
 				47E148AB1E325130008D52D7 /* AppDelegate.swift in Sources */,
 				47024F891E3601EB0020F7CA /* EnteryViewController.swift in Sources */,
-				47024F8D1E360C0C0020F7CA /* ContactItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
