@@ -7,17 +7,43 @@
 //
 
 import UIKit
+import RealmSwift
+import Realm
 
 class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegate{
 
     @IBOutlet weak var tableview: UITableView!
     
+    //dataların tutuldugu yer
+    var datasource:Results<ContactItem>!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadTheTable()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
        self.setupUI()
+       reloadTheTable()
+        print(Realm.Configuration.defaultConfiguration.fileURL)
     }
 
+    func reloadTheTable(){
+        do{
+            let realm = try Realm()
+            datasource = realm.objects(ContactItem)
+            tableview?.reloadData()
+    
+        }
+        catch{
+        }
+    
+        
+        
+    }
+    
     func setupUI() {
         tableview.delegate = self
         tableview.dataSource = self
@@ -29,7 +55,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         print("Selected row at \(indexPath.row) ")
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 5
+        return datasource.count
     }
     
     
@@ -41,15 +67,17 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
             cell = UITableViewCell(style: .subtitle , reuseIdentifier: identifier)
             
         }
-        cell?.textLabel?.text = "Row \(indexPath.row)"
-        cell?.detailTextLabel?.text = "\(NSDate())"
+        
+        let currentContactInfo = datasource[indexPath.row]
+        cell?.textLabel?.text = currentContactInfo.Name
+        cell?.detailTextLabel?.text = currentContactInfo.PhoneNumber
         return cell!
         
     }
 
     //sütun aralarını genişletme
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return 70
+        return 50
     }
     
     
@@ -69,6 +97,9 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     }
  */
     
+    @IBAction func actionGoToEnteryVC(_ sender: Any) {
+        performSegue(withIdentifier: "goToEnteryVC"  , sender: nil)
+    }
     
     
     
