@@ -15,9 +15,7 @@ import Realm
 class ViewController: UIViewController{
     var id: String = ""
     var imdbId: String = ""
-    //var ref : FIRDatabaseReference!
-    //var items: [Movie] = []
-    var pageNum: Int = 5
+    var pageNum: Int = 50
     var page: String = ""
     var m: Int = 0
     var request1: String = ""
@@ -36,159 +34,176 @@ class ViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         reloadTheTable()
+        //var timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.viewDidLoad), userInfo: nil, repeats: true);
     }
+    
+    var myGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
        //self.setupUI()
         print(Realm.Configuration.defaultConfiguration.fileURL)
+       
        reloadTheTable()
-        
-        
-        //1130 pages
-        for i in 0..<pageNum {
-        //     page = String(j)
-        //     print(page)
-        page = String(i)
-        
-        request1 = "https://api.themoviedb.org/3/discover/movie?api_key=60ec9d5fa8ff0c39143aa6049c37291e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&"+page+"=1&vote_average.gte=6&append_to_response=external_ids"
-        //print(request1)
-        Alamofire.request(self.request1,method: .get).responseJSON { response in
-            
-            if let json = response.result.value{
-                //print("JSON: \(json)")
-                
-                let jsonParse = JSON(json)
-                // print(jsonParse)
-                // print("------------------------- ----------------")
-                let arrayIds =  jsonParse["results"].arrayValue.map({$0["id"].stringValue})
-                //let pageId = jsonParse["page"].stringValue
-                
-                //  print(arrayIds)
-                //  print(self.id)
-                
-                for i in 0..<arrayIds.count {
-                    
-                    self.id = arrayIds[i]
-                    //   print(self.id)
-                    
-                    self.request2 = "https://api.themoviedb.org/3/movie/"+self.id+"?api_key=60ec9d5fa8ff0c39143aa6049c37291e&language=en-US"
-                    Alamofire.request(self.request2).responseJSON { response in
-                        
-                        if let jsonMovie = response.result.value{
-                            // print("JSON: \(jsonMovie)")
-                            
-                            let jsonParseMovie = JSON(jsonMovie)
-                            
-                            let imdbId = jsonParseMovie["imdb_id"].stringValue
-                            
-                            
-                            //print(imdbId)
-                            
-                            Alamofire.request("https://www.omdbapi.com/?i="+imdbId+"&plot=short&r=json&tomatoes=true").responseJSON { response in
-                                
-                                if let jsonImdb = response.result.value{
-                                    // print("JSON: \(jsonMovie)")
-                                    
-                                    let jsonParseImdb = JSON(jsonImdb)
-                                    print(jsonParseImdb)
-                                    
-                                    
-                                    //l-----------firebase e atma islemi--------------
-                                    
-                                    let title = jsonParseImdb["Title"].stringValue
-                                    let year = jsonParseImdb["Year"].stringValue
-                                    let released = jsonParseImdb["Released"].stringValue
-                                    let runtime = jsonParseImdb["Runtime"].stringValue
-                                    let genre = jsonParseImdb["Genre"].stringValue
-                                    let language = jsonParseImdb["Language"].stringValue
-                                    let country = jsonParseImdb["Country"].stringValue
-                                    let poster = jsonParseImdb["Poster"].stringValue
-                                    let metascore = jsonParseImdb["Metascore"].stringValue
-                                    let imdbRating = jsonParseImdb["imdbRating"].stringValue
-                                    let imdbVotes = jsonParseImdb["imdbVotes"].stringValue
-                                    let type = jsonParseImdb["Type"].stringValue
-                                    let tomatoMeter = jsonParseImdb["tomatoMeter"].stringValue
-                                    let tomatoRating = jsonParseImdb["tomatoRating"].stringValue
-                                    let tomatoReviews = jsonParseImdb["tomatoReviews"].stringValue
-                                    let tomatoFresh = jsonParseImdb["tomatoFresh"].stringValue
-                                    let tomatoRotten = jsonParseImdb["tomatoRotten"].stringValue
-                                    let tomatoConsensus = jsonParseImdb["tomatoConsensus"].stringValue
-                                    let tomatoUserMeter = jsonParseImdb["tomatoUserMeter"].stringValue
-                                    let tomatoUserRating = jsonParseImdb["tomatoUserRating"].stringValue
-                    
-                                    
-                                    print(title)
-                                    print(year)
-                                    print(released)
-                                    print(runtime)
-                                    
-                                    
-                                    let newContact = Films()
-                                    // newContact.Name = txtContactName.text!
-                                    // newContact.PhoneNumber = txtContactTelephoneNumber.text!
-                                    
-                                    
-                                    newContact.Title = title
-                                    newContact.Year = year
-                                    newContact.Released = released
-                                    newContact.Runtime = runtime
-                                    newContact.Genre = genre
-                                    newContact.Language = language
-                                    newContact.Country = country
-                                    newContact.Poster = poster
-                                    newContact.Metascore = metascore
-                                    newContact.ImdbRating = imdbRating
-                                    newContact.ImdbVotes = imdbVotes
-                                    newContact.Typee = type
-                                    newContact.TomatoMeter = tomatoMeter
-                                    newContact.TomatoRating = tomatoRating
-                                    newContact.TomatoReviews = tomatoReviews
-                                    newContact.TomatoFresh = tomatoFresh
-                                    newContact.TomatoRotten = tomatoRotten
-                                    newContact.TomatoConsensus = tomatoConsensus
-                                    newContact.TomatoUserMeter = tomatoUserMeter
-                                    newContact.TomatoUserRating = tomatoUserRating
-                                    
-                                    
-                                    do{
-                                        let realm = try Realm()
-                                        try realm.write { ()->Void in
-                                            realm.add(newContact)
-                                            print("Contact Save")
 
-                                        }
-                                    }
+        //1130 pages
+        for i in 1..<pageNum {
+            myGroup.enter()
+            //     page = String(j)
+            //     print(page)
+            
+            page = String(i)
+            print(page)
+            
+            request1 = "https://api.themoviedb.org/3/discover/movie?api_key=60ec9d5fa8ff0c39143aa6049c37291e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page="+page+"&vote_average.gte=6&append_to_response=external_ids"
+            print(request1)
+            
+            
+            //----------------------------------------------------------------------------------------------------------
+            Alamofire.request(self.request1,method: .get).responseJSON { response in
+                
+                if let json = response.result.value{
+                    //print("JSON: \(json)")
+                    
+                    let jsonParse = JSON(json)
+                     print(jsonParse)
+                    // print("------------------------- ----------------")
+                    let arrayIds =  jsonParse["results"].arrayValue.map({$0["id"].stringValue})
+                    //let pageId = jsonParse["page"].stringValue
+                    
+                    //  print(arrayIds)
+                    //  print(self.id)
+                    
+                    for i in 0..<arrayIds.count {
+                        
+                        self.id = arrayIds[i]
+                        //   print(self.id)
+                        
+                        self.request2 = "https://api.themoviedb.org/3/movie/"+self.id+"?api_key=60ec9d5fa8ff0c39143aa6049c37291e&language=en-US"
+                        Alamofire.request(self.request2).responseJSON { response in
+                            
+                            if let jsonMovie = response.result.value{
+                                // print("JSON: \(jsonMovie)")
+                                
+                                let jsonParseMovie = JSON(jsonMovie)
+                                
+                                let imdbId = jsonParseMovie["imdb_id"].stringValue
+                                
+                                
+                                //print(imdbId)
+                                
+                                Alamofire.request("https://www.omdbapi.com/?i="+imdbId+"&plot=short&r=json&tomatoes=true").responseJSON { response in
                                     
-                                    catch{
+                                    if let jsonImdb = response.result.value{
+                                        // print("JSON: \(jsonMovie)")
                                         
+                                        let jsonParseImdb = JSON(jsonImdb)
+                                        // print(jsonParseImdb)
+                                        
+                                        
+                                        //l-----------firebase e atma islemi--------------
+                                        
+                                        let title = jsonParseImdb["Title"].stringValue
+                                        let year = jsonParseImdb["Year"].stringValue
+                                        let released = jsonParseImdb["Released"].stringValue
+                                        let runtime = jsonParseImdb["Runtime"].stringValue
+                                        let genre = jsonParseImdb["Genre"].stringValue
+                                        let language = jsonParseImdb["Language"].stringValue
+                                        let country = jsonParseImdb["Country"].stringValue
+                                        let poster = jsonParseImdb["Poster"].stringValue
+                                        let metascore = jsonParseImdb["Metascore"].stringValue
+                                        let imdbRating = jsonParseImdb["imdbRating"].stringValue
+                                        let imdbVotes = jsonParseImdb["imdbVotes"].stringValue
+                                        let type = jsonParseImdb["Type"].stringValue
+                                        let tomatoMeter = jsonParseImdb["tomatoMeter"].stringValue
+                                        let tomatoRating = jsonParseImdb["tomatoRating"].stringValue
+                                        let tomatoReviews = jsonParseImdb["tomatoReviews"].stringValue
+                                        let tomatoFresh = jsonParseImdb["tomatoFresh"].stringValue
+                                        let tomatoRotten = jsonParseImdb["tomatoRotten"].stringValue
+                                        let tomatoConsensus = jsonParseImdb["tomatoConsensus"].stringValue
+                                        let tomatoUserMeter = jsonParseImdb["tomatoUserMeter"].stringValue
+                                        let tomatoUserRating = jsonParseImdb["tomatoUserRating"].stringValue
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        let newContact = Films()
+                                        // newContact.Name = txtContactName.text!
+                                        // newContact.PhoneNumber = txtContactTelephoneNumber.text!
+                                        
+                                        newContact.Title = title
+                                        newContact.Year = year
+                                        newContact.Released = released
+                                        newContact.Runtime = runtime
+                                        newContact.Genre = genre
+                                        newContact.Language = language
+                                        newContact.Country = country
+                                        newContact.Poster = poster
+                                        newContact.Metascore = metascore
+                                        newContact.ImdbRating = imdbRating
+                                        newContact.ImdbVotes = imdbVotes
+                                        newContact.Typee = type
+                                        newContact.TomatoMeter = tomatoMeter
+                                        newContact.TomatoRating = tomatoRating
+                                        newContact.TomatoReviews = tomatoReviews
+                                        newContact.TomatoFresh = tomatoFresh
+                                        newContact.TomatoRotten = tomatoRotten
+                                        newContact.TomatoConsensus = tomatoConsensus
+                                        newContact.TomatoUserMeter = tomatoUserMeter
+                                        newContact.TomatoUserRating = tomatoUserRating
+                                        
+                                        
+                                        do{
+                                            let realm = try Realm()
+                                            try realm.write { ()->Void in
+                                                realm.add(newContact)
+                                                
+                                                
+                                                
+                                            }
+                                            
+                                        }
+                                            
+                                        catch{
+                                            
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
+                print("Finished request \(i)")
+                self.myGroup.leave()
+                
             }
+            //-----------------------------------------------------------------------------------------------------------
             
+           // print("Contact Save")
         }
-    }
+        myGroup.notify(queue: DispatchQueue.main, execute: {
+            print("Finished all requests.")
+        })
     }
 
-    func reloadTheTable(){
+    func reloadTheTable() {
         do{
             let realm = try Realm()
+            
             datasource = realm.objects(Films.self)
+            //datasource = realm.objects(Films.self).filter("id == '\(films.Title)'")
+            
             
             tableview?.reloadData()
     
         }
         catch{
         }
-    
-        
         
     }
+
     /*
     
     func setupUI() {
