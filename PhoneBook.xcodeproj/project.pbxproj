@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		47024F891E3601EB0020F7CA /* EnteryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47024F881E3601EB0020F7CA /* EnteryViewController.swift */; };
 		47161D4A1E368BD400A37E61 /* Films.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47161D491E368BD400A37E61 /* Films.swift */; };
+		473F91C11E3E7B570064FF5A /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473F91C01E3E7B570064FF5A /* test.swift */; };
 		47E148AB1E325130008D52D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E148AA1E325130008D52D7 /* AppDelegate.swift */; };
 		47E148AD1E325130008D52D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E148AC1E325130008D52D7 /* ViewController.swift */; };
 		47E148B01E325130008D52D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47E148AE1E325130008D52D7 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 		11E6A1AF18122A6DD487946F /* Pods_PhoneBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhoneBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		47024F881E3601EB0020F7CA /* EnteryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnteryViewController.swift; sourceTree = "<group>"; };
 		47161D491E368BD400A37E61 /* Films.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Films.swift; sourceTree = "<group>"; };
+		473F91C01E3E7B570064FF5A /* test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		47E148A71E325130008D52D7 /* PhoneBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhoneBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47E148AA1E325130008D52D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47E148AC1E325130008D52D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				47E148B31E325131008D52D7 /* LaunchScreen.storyboard */,
 				47E148B61E325131008D52D7 /* Info.plist */,
 				47024F881E3601EB0020F7CA /* EnteryViewController.swift */,
+				473F91C01E3E7B570064FF5A /* test.swift */,
 			);
 			path = PhoneBook;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				47161D4A1E368BD400A37E61 /* Films.swift in Sources */,
 				47E148AD1E325130008D52D7 /* ViewController.swift in Sources */,
 				47E148AB1E325130008D52D7 /* AppDelegate.swift in Sources */,
+				473F91C11E3E7B570064FF5A /* test.swift in Sources */,
 				47024F891E3601EB0020F7CA /* EnteryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
