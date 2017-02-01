@@ -10,6 +10,8 @@
 		47024F891E3601EB0020F7CA /* EnteryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47024F881E3601EB0020F7CA /* EnteryViewController.swift */; };
 		47161D4A1E368BD400A37E61 /* Films.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47161D491E368BD400A37E61 /* Films.swift */; };
 		473F91C11E3E7B570064FF5A /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473F91C01E3E7B570064FF5A /* test.swift */; };
+		47485FC61E4232EF0065BC11 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47485FC51E4232EF0065BC11 /* GoogleService-Info.plist */; };
+		47485FC91E4235890065BC11 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47485FC81E4235890065BC11 /* Movie.swift */; };
 		47E148AB1E325130008D52D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E148AA1E325130008D52D7 /* AppDelegate.swift */; };
 		47E148AD1E325130008D52D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E148AC1E325130008D52D7 /* ViewController.swift */; };
 		47E148B01E325130008D52D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47E148AE1E325130008D52D7 /* Main.storyboard */; };
@@ -24,6 +26,8 @@
 		47024F881E3601EB0020F7CA /* EnteryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnteryViewController.swift; sourceTree = "<group>"; };
 		47161D491E368BD400A37E61 /* Films.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Films.swift; sourceTree = "<group>"; };
 		473F91C01E3E7B570064FF5A /* test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		47485FC51E4232EF0065BC11 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		47485FC81E4235890065BC11 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		47E148A71E325130008D52D7 /* PhoneBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhoneBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47E148AA1E325130008D52D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47E148AC1E325130008D52D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				47161D491E368BD400A37E61 /* Films.swift */,
+				47485FC81E4235890065BC11 /* Movie.swift */,
 			);
 			name = RealmModel;
 			sourceTree = "<group>";
@@ -82,6 +87,7 @@
 				47E148B11E325130008D52D7 /* Assets.xcassets */,
 				47E148B31E325131008D52D7 /* LaunchScreen.storyboard */,
 				47E148B61E325131008D52D7 /* Info.plist */,
+				47485FC51E4232EF0065BC11 /* GoogleService-Info.plist */,
 				47024F881E3601EB0020F7CA /* EnteryViewController.swift */,
 				473F91C01E3E7B570064FF5A /* test.swift */,
 			);
@@ -169,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47E148B51E325131008D52D7 /* LaunchScreen.storyboard in Resources */,
+				47485FC61E4232EF0065BC11 /* GoogleService-Info.plist in Resources */,
 				47E148B21E325130008D52D7 /* Assets.xcassets in Resources */,
 				47E148B01E325130008D52D7 /* Main.storyboard in Resources */,
 			);
@@ -231,6 +238,7 @@
 			files = (
 				47161D4A1E368BD400A37E61 /* Films.swift in Sources */,
 				47E148AD1E325130008D52D7 /* ViewController.swift in Sources */,
+				47485FC91E4235890065BC11 /* Movie.swift in Sources */,
 				47E148AB1E325130008D52D7 /* AppDelegate.swift in Sources */,
 				473F91C11E3E7B570064FF5A /* test.swift in Sources */,
 				47024F891E3601EB0020F7CA /* EnteryViewController.swift in Sources */,
@@ -277,6 +285,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -326,6 +335,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -354,6 +364,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 006750AB082EC9E2DAA50E76 /* Pods-PhoneBook.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QZHSMV869F;
 				INFOPLIST_FILE = PhoneBook/Info.plist;
@@ -368,6 +379,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 83573670F2E7487A42C69BC4 /* Pods-PhoneBook.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QZHSMV869F;
 				INFOPLIST_FILE = PhoneBook/Info.plist;
