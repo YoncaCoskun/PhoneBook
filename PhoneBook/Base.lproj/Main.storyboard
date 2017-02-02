@@ -32,16 +32,28 @@
                                     <action selector="actionRealm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EjM-Wd-oSK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIz-7Y-lNu">
-                                <rect key="frame" x="88" y="277" width="182" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rvi-X2-5Mu">
+                                <rect key="frame" x="88" y="261" width="182" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.95967453719999996" green="0.024580238389999998" blue="0.41324597600000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="FIREBASE">
+                                <state key="normal" title="Firebase Movie">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="actionFirebase:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LlV-7z-axn"/>
-                                    <action selector="actionRealm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fYJ-3h-miE"/>
+                                    <action selector="actionFirebaseMovie:" destination="BYZ-38-t0r" eventType="touchUpInside" id="znE-5K-Dhb"/>
+                                    <action selector="actionRealm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eow-a5-UEN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSh-Qp-jl1">
+                                <rect key="frame" x="88" y="299" width="182" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.95967453719999996" green="0.024580238389999998" blue="0.41324597600000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Firebase Tv">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="actionFirebaseTv:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iOn-CY-7Mk"/>
+                                    <action selector="actionRealm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hgh-j2-Eje"/>
                                 </connections>
                             </button>
                         </subviews>

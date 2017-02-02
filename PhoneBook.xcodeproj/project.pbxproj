@@ -12,6 +12,7 @@
 		473F91C11E3E7B570064FF5A /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473F91C01E3E7B570064FF5A /* test.swift */; };
 		47485FC61E4232EF0065BC11 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47485FC51E4232EF0065BC11 /* GoogleService-Info.plist */; };
 		47485FC91E4235890065BC11 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47485FC81E4235890065BC11 /* Movie.swift */; };
+		47D1FCEE1E4269C20066A694 /* Tv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D1FCED1E4269C20066A694 /* Tv.swift */; };
 		47E148AB1E325130008D52D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E148AA1E325130008D52D7 /* AppDelegate.swift */; };
 		47E148AD1E325130008D52D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E148AC1E325130008D52D7 /* ViewController.swift */; };
 		47E148B01E325130008D52D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47E148AE1E325130008D52D7 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 		473F91C01E3E7B570064FF5A /* test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		47485FC51E4232EF0065BC11 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		47485FC81E4235890065BC11 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		47D1FCED1E4269C20066A694 /* Tv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tv.swift; sourceTree = "<group>"; };
 		47E148A71E325130008D52D7 /* PhoneBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhoneBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47E148AA1E325130008D52D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47E148AC1E325130008D52D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			children = (
 				47161D491E368BD400A37E61 /* Films.swift */,
 				47485FC81E4235890065BC11 /* Movie.swift */,
+				47D1FCED1E4269C20066A694 /* Tv.swift */,
 			);
 			name = RealmModel;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				47E148AD1E325130008D52D7 /* ViewController.swift in Sources */,
 				47485FC91E4235890065BC11 /* Movie.swift in Sources */,
 				47E148AB1E325130008D52D7 /* AppDelegate.swift in Sources */,
+				47D1FCEE1E4269C20066A694 /* Tv.swift in Sources */,
 				473F91C11E3E7B570064FF5A /* test.swift in Sources */,
 				47024F891E3601EB0020F7CA /* EnteryViewController.swift in Sources */,
 			);
