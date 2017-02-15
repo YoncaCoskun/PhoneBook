@@ -18,8 +18,8 @@ class ViewController: UIViewController{
     var id: String = ""
     var idIMDB: String = ""
     var imdbId: String = ""
-    var pageNumMovie: Int = 7 //1225
-    var pageNumTv: Int = 7 //14
+    var pageNumMovie: Int = 2 //1225
+    var pageNumTv: Int = 2 //14
     var page: String = ""
     var m: Int = 0
     var request1: String = ""
@@ -50,8 +50,8 @@ class ViewController: UIViewController{
     @IBAction func actionRealm(_ sender: Any) {
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
-        reloadTheTable()
-        getDataRealm()
+        //reloadTheTable()
+      //  getDataRealm()
     }
 
     @IBAction func actionFirebaseMovie(_ sender: Any) {
@@ -100,7 +100,7 @@ class ViewController: UIViewController{
         
     }
     
-    func getDataRealm(){
+   /* func getDataRealm(){
         
         //1130 pages
         for i in 1..<pageNumTv {
@@ -127,7 +127,7 @@ class ViewController: UIViewController{
             //---------------------------Alamofire 1-------------------------------------------------------------------------
             
             //------------------------Alamofire 2----------------------------------------------------------------------------
-            //print(self.idArray)
+            print(self.idArray)
             for i in 0..<idArray.count {
                 self.id = idArray[i]
                 //print(self.id)
@@ -144,7 +144,7 @@ class ViewController: UIViewController{
                 }
             }
             print("-----------------------"+page+"-------------------------------")
-            //print(idImdb)
+            print(idImdb)
             //------------------------Alamofire 2----------------------------------------------------------------------------
             
             //---------------Alamofire 3------------------------------------------------------------------------------------
@@ -231,7 +231,7 @@ class ViewController: UIViewController{
             print("Finished all requests.")
         })
     
-    }
+    }*/
     func getDataMovie(){
     
         //--------------------------------------------------------------------------------------------------------------------
@@ -244,7 +244,7 @@ class ViewController: UIViewController{
             
             //---------------------------Alamofire 1-------------------------------------------------------------------------
             
-            requestMovie = "https://api.themoviedb.org/3/discover/movie?api_key=60ec9d5fa8ff0c39143aa6049c37291e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page="+page+"&vote_average.gte=7.0&append_to_response=external_ids"
+            requestMovie = "https://api.themoviedb.org/3/discover/movie?api_key=60ec9d5fa8ff0c39143aa6049c37291e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page="+page+"&vote_count.gte=150&vote_average.gte=6.5"
             
             let responseMovie = Alamofire.request(requestMovie, method: .get).responseJSON()
             if let json = responseMovie.result.value {
@@ -273,8 +273,8 @@ class ViewController: UIViewController{
                     
                 }
             }
-            //print("-----------------------"+page+"-------------------------------")
-            //print(idImdbMovie)
+            print("-----------------------"+page+"-------------------------------")
+            print(idImdbMovie)
 
             //------------------------Alamofire 2----------------------------------------------------------------------------
             
@@ -282,13 +282,14 @@ class ViewController: UIViewController{
             
             for j in 0..<idImdbMovie.count {
                 self.idIMDB = idImdbMovie[j]
-                requestMovie3 = "https://www.omdbapi.com/?i="+self.idIMDB+"&plot=short&r=json&tomatoes=true"
+                
+                requestMovie3 = "http://www.omdbapi.com/?i=tt3659388&plot=short&r=json&tomatoes=true"//"http://www.omdbapi.com/?i="+self.idIMDB+"&plot=short&r=json"
                 
                 let responseMovie3 = Alamofire.request(requestMovie3, method: .get).responseJSON()
                 if let jsonImdbMovie = responseMovie3.result.value {
                     //print("JSON: \(jsonImdb)")
                     let jsonParseImdbMovie = JSON(jsonImdbMovie)
-                    //print(jsonParseImdb)
+                    print(jsonParseImdbMovie)
                     
                     //l-----------firebase e atma islemi--------------
                     
@@ -359,7 +360,7 @@ class ViewController: UIViewController{
             
             //---------------------------Alamofire 1-------------------------------------------------------------------------
             
-            requestTv = "https://api.themoviedb.org/3/discover/tv?api_key=60ec9d5fa8ff0c39143aa6049c37291e&language=en-US&sort_by=popularity.desc&page="+page+"&vote_average.gte=7&vote_count.gte=15"
+            requestTv = "https://api.themoviedb.org/3/discover/tv?api_key=60ec9d5fa8ff0c39143aa6049c37291e&language=en-US&sort_by=popularity.desc&page="+page+"&vote_average.gte=7&vote_count.gte=15&include_null_first_air_dates=false"
             
             let responseTv = Alamofire.request(requestTv, method: .get).responseJSON()
             if let json = responseTv.result.value {
@@ -389,7 +390,7 @@ class ViewController: UIViewController{
                     let jsonParseTv = JSON(jsonTv)
                     //print(jsonParseMovie)
                     let imdbIdTv =  jsonParseTv["external_ids"]["imdb_id"].stringValue
-                    
+                    print(imdbIdTv)
                     if(imdbIdTv == ""){
                         let original_name = jsonParseTv["original_name"].stringValue
                         let overview = jsonParseTv["overview"].stringValue
@@ -426,8 +427,8 @@ class ViewController: UIViewController{
             for j in 0..<idImdbTv.count {
                 self.idIMDB = idImdbTv[j]
                 self.id = idArrayTv[j]
-                requestTv3 = "https://www.omdbapi.com/?i="+self.idIMDB+"&plot=short&r=json&tomatoes=true"
-                
+                requestTv3 = "http://www.omdbapi.com/?i="+self.idIMDB+"&plot=short&r=json&tomatoes=true"
+                print(requestTv3)
                 if(idIMDB == ""){
                     print("imdb id bosss"+self.id)
                   
