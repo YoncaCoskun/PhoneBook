@@ -25,12 +25,12 @@ struct Tv {
     let last_air_date: String
     let number_of_episodes: String
     let number_of_seasons: String
-  
+
     
     let ref: FIRDatabaseReference?
     
     
-    init(original_name: String, overview: String, poster_path: String, original_language: String, type: String, vote_average: String, vote_count: String, first_air_date: String, last_air_date: String, number_of_episodes: String, number_of_seasons: String,key: String = "") {
+    init(original_name: String, overview: String, poster_path: String, original_language: String, type: String, vote_average: String, vote_count: String, first_air_date: String, last_air_date: String, number_of_episodes: String, number_of_seasons: String, key: String = "") {
         self.key = key
         self.original_name = original_name
         self.overview = overview
@@ -43,6 +43,7 @@ struct Tv {
         self.last_air_date = last_air_date
         self.number_of_episodes = number_of_episodes
         self.number_of_seasons = number_of_seasons
+       
         
         self.ref = nil
     }
@@ -61,7 +62,7 @@ struct Tv {
         last_air_date = snapshotValue["last_air_date"] as! String
         number_of_episodes = snapshotValue["number_of_episodes"] as! String
         number_of_seasons = snapshotValue["number_of_seasons"] as! String
-    
+
         
         ref = snapshot.ref
     }
@@ -79,8 +80,7 @@ struct Tv {
             "last_air_date": last_air_date,
             "number_of_episodes": number_of_episodes,
             "number_of_seasons": number_of_seasons,
-      
-            
+
         ]
     }
     

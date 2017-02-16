@@ -18,8 +18,8 @@ class ViewController: UIViewController{
     var id: String = ""
     var idIMDB: String = ""
     var imdbId: String = ""
-    var pageNumMovie: Int = 2 //1225
-    var pageNumTv: Int = 2 //14
+    var pageNumMovie: Int = 79  //78
+    var pageNumTv: Int = 17 //16
     var page: String = ""
     var m: Int = 0
     var request1: String = ""
@@ -44,6 +44,7 @@ class ViewController: UIViewController{
     var itemsMovie: [Movie] = []
     var itemsTv: [Movie] = []
     var itemsTvNonImdb: [Tv] = []
+    var itemsMovieNonImdb: [Tv] = []
     
 
    
@@ -239,6 +240,7 @@ class ViewController: UIViewController{
             idArrayMovie = []
             idImdb = []
             idImdbMovie = []
+            myGroup.enter()
             
             page = String(i)
             
@@ -258,7 +260,7 @@ class ViewController: UIViewController{
             
             //------------------------Alamofire 2----------------------------------------------------------------------------
             //print(self.idArray)
-            for i in 0..<idArrayMovie.count {
+           /* for i in 0..<idArrayMovie.count {
                 self.id = idArrayMovie[i]
                 // print(self.id)
                 self.requestMovie2 = "https://api.themoviedb.org/3/movie/"+self.id+"?api_key=60ec9d5fa8ff0c39143aa6049c37291e&language=en-US"
@@ -272,6 +274,52 @@ class ViewController: UIViewController{
                     idImdbMovie.append(imdbIdMovie)
                     
                 }
+ 
+              
+            }
+            */
+            for i in 0..<idArrayMovie.count {
+                self.id = idArrayMovie[i]
+                // print(self.id)
+                self.requestMovie2 = "https://api.themoviedb.org/3/movie/"+self.id+"?api_key=60ec9d5fa8ff0c39143aa6049c37291e&language=en-US"
+                
+                let responseMovie2 = Alamofire.request(requestMovie2, method: .get).responseJSON()
+                if let jsonMovie = responseMovie2.result.value {
+                    //print(json)
+                    let jsonParseMovie = JSON(jsonMovie)
+                    //print(jsonParseMovie)
+                    let imdbIdMovie =  jsonParseMovie["imdb_id"].stringValue
+                    //print(imdbIdTv)
+                    if(imdbIdMovie == ""){
+                        let original_name = jsonParseMovie["original_name"].stringValue
+                        let overview = jsonParseMovie["overview"].stringValue
+                        let poster_path = jsonParseMovie["poster_path"].stringValue
+                        let original_language = jsonParseMovie["original_language"].stringValue
+                        let type = jsonParseMovie["type"].stringValue
+                        let vote_average = jsonParseMovie["vote_average"].stringValue
+                        let vote_count = jsonParseMovie["vote_count"].stringValue
+                        let first_air_date = jsonParseMovie["first_air_date"].stringValue
+                        let last_air_date = jsonParseMovie["last_air_date"].stringValue
+                        let number_of_episodes = jsonParseMovie["number_of_episodes"].stringValue
+                        let number_of_seasons = jsonParseMovie["number_of_seasons"].stringValue
+                        
+                        
+                        let movieItem = Tv(original_name: original_name, overview:overview,poster_path:poster_path,original_language: original_language, type:type, vote_average:vote_average, vote_count:vote_count, first_air_date:first_air_date, last_air_date :last_air_date , number_of_episodes: number_of_episodes, number_of_seasons:number_of_seasons)
+                        
+                        // 3
+                        let filmItemRefMovie = self.refTv.child("NonImdbMovie")
+                        let imdbRefMovie = filmItemRefMovie.child(id)
+                        imdbRefMovie.setValue(movieItem.toAnyObject())
+                        self.itemsMovieNonImdb.append(movieItem)
+                    }
+                    else{
+                        //print(imdbIdTv)
+                        idImdbMovie.append(imdbIdMovie)
+                    }
+                    
+                    
+                    
+                }
             }
             print("-----------------------"+page+"-------------------------------")
             print(idImdbMovie)
@@ -283,13 +331,14 @@ class ViewController: UIViewController{
             for j in 0..<idImdbMovie.count {
                 self.idIMDB = idImdbMovie[j]
                 
-                requestMovie3 = "http://www.omdbapi.com/?i=tt3659388&plot=short&r=json&tomatoes=true"//"http://www.omdbapi.com/?i="+self.idIMDB+"&plot=short&r=json"
+                requestMovie3 = "http://www.omdbapi.com/?i="+self.idIMDB+"&plot=short&r=json&tomatoes=true"
                 
+            
                 let responseMovie3 = Alamofire.request(requestMovie3, method: .get).responseJSON()
                 if let jsonImdbMovie = responseMovie3.result.value {
                     //print("JSON: \(jsonImdb)")
                     let jsonParseImdbMovie = JSON(jsonImdbMovie)
-                    print(jsonParseImdbMovie)
+                    //print(jsonParseImdbMovie)
                     
                     //l-----------firebase e atma islemi--------------
                     
@@ -313,23 +362,22 @@ class ViewController: UIViewController{
                     let tomatoConsensus = jsonParseImdbMovie["tomatoConsensus"].stringValue
                     let tomatoUserMeter = jsonParseImdbMovie["tomatoUserMeter"].stringValue
                     let tomatoUserRating = jsonParseImdbMovie["tomatoUserRating"].stringValue
-                    
+                    let plot = jsonParseImdbMovie["Plot"].stringValue
                     
                     
                     
                     // 2
-                    let filmItem = Movie(title: title ,year: year, released: released, runtime: runtime,genre: genre,
+                    let filmItem = Movie(title: title ,year:year, released: released, runtime: runtime,genre: genre,
                                          language: language, country: country, poster: poster, metascore: metascore,
                                          imdbRating: imdbRating, imdbVotes: imdbVotes, type: type, tomatoMeter: tomatoMeter,
                                          tomatoRating: tomatoRating, tomatoReviews: tomatoReviews, tomatoFresh: tomatoFresh,
                                          tomatoRotten: tomatoRotten, tomatoConsensus: tomatoConsensus, tomatoUserMeter: tomatoUserMeter,
-                                         tomatoUserRating: tomatoUserRating)
+                                         tomatoUserRating: tomatoUserRating, plot:plot)
                     // 3
-                    let filmItemRefMovie = self.refMovie.child("ResultsMovie")
+                    let filmItemRefMovie = self.refMovie.child("Movie")
                     
-                    let pageIdRefMovie = filmItemRefMovie.child("movie")
                     
-                    let imdbRefMovie = pageIdRefMovie.child(idIMDB)
+                    let imdbRefMovie = filmItemRefMovie.child(idIMDB)
                     
                     // 4
                     imdbRefMovie.setValue(filmItem.toAnyObject())
@@ -340,11 +388,17 @@ class ViewController: UIViewController{
                    
                     
                 }
+            
             }
+            print("Finished request \(i)")
+            self.myGroup.leave()
             
             //------------Alamofire 3--------------------------------------------------
         
         }
+        myGroup.notify(queue: DispatchQueue.main, execute: {
+            print("Finished all requests.")
+        })
     }
     //-----------------------------------------------------------------------------------------------------------------------------------------------
     func getDataTv(){
@@ -354,7 +408,7 @@ class ViewController: UIViewController{
             idArrayTv = []
             idImdb = []
             idImdbTv = []
-            
+            myGroup.enter()
             
             page = String(i)
             
@@ -390,7 +444,7 @@ class ViewController: UIViewController{
                     let jsonParseTv = JSON(jsonTv)
                     //print(jsonParseMovie)
                     let imdbIdTv =  jsonParseTv["external_ids"]["imdb_id"].stringValue
-                    print(imdbIdTv)
+                    //print(imdbIdTv)
                     if(imdbIdTv == ""){
                         let original_name = jsonParseTv["original_name"].stringValue
                         let overview = jsonParseTv["overview"].stringValue
@@ -403,18 +457,22 @@ class ViewController: UIViewController{
                         let last_air_date = jsonParseTv["last_air_date"].stringValue
                         let number_of_episodes = jsonParseTv["number_of_episodes"].stringValue
                         let number_of_seasons = jsonParseTv["number_of_seasons"].stringValue
+                       
                         
                         let tvItem = Tv(original_name: original_name, overview:overview,poster_path:poster_path,original_language: original_language, type:type, vote_average:vote_average, vote_count:vote_count, first_air_date:first_air_date, last_air_date :last_air_date , number_of_episodes: number_of_episodes, number_of_seasons:number_of_seasons)
                         
                         // 3
-                        let filmItemRefTv = self.refTv.child("ResultsNonImdbTv")
-                        let pageIdRefTv = filmItemRefTv.child("tvNonImdb")
-                        let imdbRefTv = pageIdRefTv.child(id)
+                        let filmItemRefTv = self.refTv.child("NonImdbTv")
+                        let imdbRefTv = filmItemRefTv.child(id)
                         imdbRefTv.setValue(tvItem.toAnyObject())
                         self.itemsTvNonImdb.append(tvItem)
                     }
-                    //print(imdbIdTv)
-                    idImdbTv.append(imdbIdTv)
+                    else{
+                        //print(imdbIdTv)
+                        idImdbTv.append(imdbIdTv)
+                    }
+                    
+                    
                     
                 }
             }
@@ -428,12 +486,7 @@ class ViewController: UIViewController{
                 self.idIMDB = idImdbTv[j]
                 self.id = idArrayTv[j]
                 requestTv3 = "http://www.omdbapi.com/?i="+self.idIMDB+"&plot=short&r=json&tomatoes=true"
-                print(requestTv3)
-                if(idIMDB == ""){
-                    print("imdb id bosss"+self.id)
-                  
-                         }
-                else{
+                //print(requestTv3)
                     
                     let responseTv3 = Alamofire.request(self.requestTv3, method: .get).responseJSON()
                     if let jsonImdbTv = responseTv3.result.value {
@@ -463,6 +516,7 @@ class ViewController: UIViewController{
                         let tomatoConsensus = jsonParseImdbTv["tomatoConsensus"].stringValue
                         let tomatoUserMeter = jsonParseImdbTv["tomatoUserMeter"].stringValue
                         let tomatoUserRating = jsonParseImdbTv["tomatoUserRating"].stringValue
+                        let plot = jsonParseImdbTv["Plot"].stringValue
                         
                         
                         
@@ -473,30 +527,38 @@ class ViewController: UIViewController{
                                              imdbRating: imdbRating, imdbVotes: imdbVotes, type: type, tomatoMeter: tomatoMeter,
                                              tomatoRating: tomatoRating, tomatoReviews: tomatoReviews, tomatoFresh: tomatoFresh,
                                              tomatoRotten: tomatoRotten, tomatoConsensus: tomatoConsensus, tomatoUserMeter: tomatoUserMeter,
-                                             tomatoUserRating: tomatoUserRating)
+                                             tomatoUserRating: tomatoUserRating, plot: plot)
+                        
                         // 3
-                        let filmItemRefTv = self.refTv.child("ResultsTv")
+                        let filmItemRefTv = self.refTv.child("Tv")
+                       
+                        //print(filmItemRefTv)
                         
-                        let pageIdRefTv = filmItemRefTv.child("tv")
-                        
-                        let imdbRefTv = pageIdRefTv.child(idIMDB)
-                        
+                        let imdbRefTv = filmItemRefTv.child(idIMDB)
+                        //print(imdbRefTv)
                         // 4
                         imdbRefTv.setValue(filmItem.toAnyObject())
+                        //print(imdbRefTv.setValue(filmItem.toAnyObject()))
                         
                         self.itemsTv.append(filmItem)
-                        
-                        
+
+                        //print(itemsTv)
                         
                         
                 }
-                }
-               
+                
+              
             
             //------------Alamofire 3--------------------------------------------------
             
         }
+            print("Finished request \(i)")
+            myGroup.leave()
+           
     }
+        myGroup.notify(queue: DispatchQueue.main, execute: {
+            print("Finished all requests.")
+        })
     }
     
 }

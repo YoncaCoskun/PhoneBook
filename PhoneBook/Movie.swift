@@ -33,11 +33,12 @@ struct Movie {
     let tomatoConsensus: String
     let tomatoUserMeter: String
     let tomatoUserRating: String
+    let plot: String
     
     let ref: FIRDatabaseReference?
     
     
-    init(title: String, year: String, released: String, runtime: String, genre: String, language: String, country: String, poster: String, metascore: String, imdbRating: String, imdbVotes: String, type: String, tomatoMeter: String, tomatoRating: String, tomatoReviews: String, tomatoFresh: String, tomatoRotten: String, tomatoConsensus: String, tomatoUserMeter: String, tomatoUserRating: String, key: String = "") {
+    init(title: String, year: String, released: String, runtime: String, genre: String, language: String, country: String, poster: String, metascore: String, imdbRating: String, imdbVotes: String, type: String, tomatoMeter: String, tomatoRating: String, tomatoReviews: String, tomatoFresh: String, tomatoRotten: String, tomatoConsensus: String, tomatoUserMeter: String, tomatoUserRating: String,plot:String, key: String = "") {
         self.key = key
         self.title = title
         self.year = year
@@ -59,6 +60,7 @@ struct Movie {
         self.tomatoConsensus = tomatoConsensus
         self.tomatoUserMeter = tomatoUserMeter
         self.tomatoUserRating = tomatoUserRating
+        self.plot = plot
         self.ref = nil
     }
     
@@ -85,6 +87,7 @@ struct Movie {
         tomatoConsensus = snapshotValue["tomatoConsensus"] as! String
         tomatoUserMeter = snapshotValue["tomatoUserMeter"] as! String
         tomatoUserRating = snapshotValue["tomatoUserRating"] as! String
+        plot = snapshotValue["Plot"] as! String
         
         ref = snapshot.ref
     }
@@ -111,6 +114,7 @@ struct Movie {
             "tomatoConsensus": tomatoConsensus,
             "tomatoUserMeter": tomatoUserMeter,
             "tomatoUserRating": tomatoUserRating,
+            "Plot": plot,
             
         ]
     }
